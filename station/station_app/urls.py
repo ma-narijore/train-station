@@ -1,5 +1,5 @@
 """
-URL configuration for station project.
+URL configuration for station_app project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.2/topics/http/urls/
@@ -18,9 +18,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from station import depo
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("api/v1/", include(depo.urls)),
+    path("api/v1/", include("depo.urls")),
 ]
