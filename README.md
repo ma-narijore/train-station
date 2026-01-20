@@ -68,7 +68,10 @@ train-station/
 ```bash
 git clone https://github.com/yourusername/train-station.git
 cd train-station
+```
+
 Build and run Docker containers
+```bash
 docker-compose build
 docker-compose up -d
 ```
