@@ -82,6 +82,9 @@ class Route(models.Model):
     )
     distance = models.IntegerField()
 
+    def __str__(self):
+        return f"{self.source} - {self.destination}"
+
 
 class Station(models.Model):
     name = models.CharField(max_length=100)
