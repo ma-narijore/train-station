@@ -1,0 +1,37 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:15
+    container_name: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: django_user
+      POSTGRES_PASSWORD: django_pass
+      POSTGRES_DB: django_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  web:
+    build:
+      context: .
+    container_name: django_web
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    environment:
+      - DJANGO_SETTINGS_MODULE=station_app.settings
+      - DATABASE_HOST=db
+      - DATABASE_NAME=django_db
+      - DATABASE_USER=django_user
+      - DATABASE_PASSWORD=django_pass
+      - DATABASE_PORT=5432
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
